@@ -1,0 +1,308 @@
+// swift-interface-format-version: 1.0
+// swift-compiler-version: Apple Swift version 5.7.2 (swiftlang-5.7.2.135.5 clang-1400.0.29.51)
+// swift-module-flags: -target arm64-apple-ios14.4 -enable-objc-interop -enable-library-evolution -swift-version 5 -enforce-exclusivity=checked -O -module-name AthenaSDK
+// swift-module-flags-ignorable: -enable-bare-slash-regex
+import ARKit
+import AVFAudio
+import AppleArchive
+@_exported import AthenaSDK
+import CommonCrypto
+import CryptoKit
+import DeviceCheck
+import Foundation
+import SceneKit
+import Swift
+import UIKit
+import WebKit
+import _Concurrency
+import _StringProcessing
+import _System_Foundation
+import os.log
+import os
+public enum GAZEDATATYPE {
+  case RAL, EYEGESTURE
+  public static func == (a: AthenaSDK.GAZEDATATYPE, b: AthenaSDK.GAZEDATATYPE) -> Swift.Bool
+  public func hash(into hasher: inout Swift.Hasher)
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+@objc @_inheritsConvenienceInitializers open class DataSave : ObjectiveC.NSObject, Foundation.URLSessionDelegate {
+  public func startRecording(_ flag: Swift.Bool, toSubDir: Swift.String)
+  public func addEyeGazeData(_ x: CoreFoundation.CGFloat, _ y: CoreFoundation.CGFloat, _ z: CoreFoundation.CGFloat, _ projected: CoreFoundation.CGPoint)
+  public func gazeDataSaveType(_ type: AthenaSDK.GAZEDATATYPE)
+  public func completeDataSave(comletion: @escaping (Swift.Bool) -> Swift.Void)
+  public func completeDataSaveInternal()
+  public func uploadFile(_ fileUrl: Foundation.URL)
+  @objc override dynamic public init()
+  @objc deinit
+}
+extension AthenaSDK.DataSave : Foundation.URLSessionTaskDelegate {
+  @objc dynamic public func urlSession(_: Foundation.URLSession, task: Foundation.URLSessionTask, didSendBodyData: Swift.Int64, totalBytesSent: Swift.Int64, totalBytesExpectedToSend: Swift.Int64)
+  @objc dynamic public func urlSession(_ session: Foundation.URLSession, task: Foundation.URLSessionTask, didCompleteWithError error: Swift.Error?)
+}
+public protocol AthenaEyeControlDelegatePro : AthenaSDK.AthenaEyeControlDelegate {
+  func annotateSuccessReadALine(_ xCoord: [Swift.Float], _ yCoord: [Swift.Float])
+  func calibrationStarted(start: Swift.Bool, end: Swift.Bool)
+  func calibrationAccuracy(_ score: [Swift.Float])
+  func accuracyTestStarted(start: Swift.Bool, end: Swift.Bool, withData: ([Swift.Float], [Swift.Float], [Swift.Float]))
+  func dataSavedTo(_ dir: Swift.String, success: Swift.Bool)
+}
+extension AthenaSDK.AthenaEyeControlDelegatePro {
+  public func annotateSuccessReadALine(_ xCoord: [Swift.Float], _ yCoord: [Swift.Float])
+  public func calibrationStarted(start: Swift.Bool, end: Swift.Bool)
+  public func calibrationAccuracy(_ score: [Swift.Float])
+  public func accuracyTestStarted(start: Swift.Bool, end: Swift.Bool, withData: ([Swift.Float], [Swift.Float], [Swift.Float]))
+  public func dataSavedTo(_ dir: Swift.String, success: Swift.Bool)
+}
+@_inheritsConvenienceInitializers open class AthenaEyeControlPro : AthenaSDK.AthenaEyeControl {
+  public var delegatePro: AthenaSDK.AthenaEyeControlDelegatePro?
+  override public init(sceneView: ARKit.ARSCNView, webView: WebKit.WKWebView?)
+  public func gazeSaveDataType(_ type: AthenaSDK.GAZEDATATYPE)
+  public func setSaveData(_ saveData: Swift.Bool, toSubDir: Swift.String)
+  public func changeFontSize(fontSizeIndex: Swift.Int)
+  override public func annotateData(isReadAline: Swift.Bool, xCoord: [Swift.Float], yCoord: [Swift.Float])
+  public func setCalibrationDots(dots: [UIKit.UIImageView])
+  public func inCalibration() -> Swift.Bool
+  public func setCalibrationMode(mode: Swift.Bool)
+  public func clearCalibration()
+  public func accuracyTestMode() -> Swift.Bool
+  public func setAccuracyTest(mode: Swift.Bool)
+  @objc deinit
+}
+@_hasMissingDesignatedInitializers open class EyeGestureFeatureExtractor {
+  @objc deinit
+}
+public typealias Point = (x: Swift.Float, y: Swift.Float)
+open class ReaderViewFormatter {
+  public var cssScripts: [WebKit.WKUserScript]
+  public var readerViewScript: WebKit.WKUserScript?
+  public init(_ url: Swift.String? = nil)
+  public func addReaderViewConfiguration(userContentController: WebKit.WKUserContentController)
+  public func setupReaderCss()
+  public func setupReaderJSWithLocalScript()
+  @objc deinit
+}
+public func saveDataWithURL(subdirstr: Swift.String, data: [[Swift.Float]], columnLabel: Swift.String, annotation: Swift.String, completetion: ((Foundation.URL?) -> Swift.Void)?) -> Foundation.URL?
+public func saveData(subdirstr: Swift.String, data: [[Swift.Float]], columnLabel: Swift.String, annotation: Swift.String)
+public func copyFilesFromBundleToDocumentsFolderWith(fileExtension: Swift.String)
+public func getreferenceTimestamp(date: Foundation.Date) -> Swift.Float
+public func getTimestamp(_ date: Foundation.Date) -> Swift.Double
+public func deleteFileWithExtension(_ ext: Swift.String, inDir: Swift.String?)
+public func deleteDir(_ dirname: Swift.String)
+public func deleteTmpDir(_ dirname: Swift.String)
+public func deleteFileInTmpDir(_ filename: Swift.String)
+public func getDataFileBucket(dateIn: Foundation.Date?, prefix: Swift.String?) -> Swift.String
+public func compressZip(srcDir: Swift.String, distinationFile: Swift.String) -> Swift.String?
+public func zipFiles(_ fileUrl: Foundation.URL) -> Foundation.URL?
+public func userNameString() -> Swift.String
+public func saveUserInfoToUserDefaults(_ familyName: Swift.String, _ firstName: Swift.String, _ email: Swift.String?)
+public func appVersionString() -> Swift.String
+public func getDeviceIDInfoString() -> Swift.String
+public func deviceOrientation() -> UIKit.UIInterfaceOrientation?
+public enum SDKVersion : Swift.String {
+  case sdk1
+  case sdk1_1
+  public init?(rawValue: Swift.String)
+  public typealias RawValue = Swift.String
+  public var rawValue: Swift.String {
+    get
+  }
+}
+public let SDK_VERSION: AthenaSDK.SDKVersion
+public let sdkVersions: [(AthenaSDK.SDKVersion, Swift.Int)]
+public protocol AthenaEyeControlDelegate {
+  func didLookAt(x: CoreFoundation.CGFloat, y: CoreFoundation.CGFloat, z: CoreFoundation.CGFloat, projected: CoreFoundation.CGPoint)
+  func eyeGesture(_ gesture: AthenaSDK.EyeGestureType)
+  func eyeGesture(_ gesture: Swift.Int)
+  func readAline(_ readALine: AthenaSDK.ReadALineData)
+  func eyeBlinked(blinked: Swift.Bool)
+  func faceAnchorDetected(detected: Swift.Bool)
+  func dataRateReport(_ rate: Swift.Float)
+}
+open class AthenaEyeControl {
+  public var delegate: AthenaSDK.AthenaEyeControlDelegate?
+  public static let scrollHalfScreenRange: Swift.Double
+  public static let scrollALine: Swift.Double
+  public var clientSDKVersion: AthenaSDK.SDKVersion
+  public init(sceneView: ARKit.ARSCNView, webView: WebKit.WKWebView?)
+  public func setSDKVersion(version: Swift.String) -> Swift.String
+  public func getSDKVersion() -> Swift.String
+  public func setGestureInitiationLevel(level: Swift.Int)
+  public func start()
+  public func pause()
+  public func enableAutoScrolling(_ enabled: Swift.Bool)
+  public func disableRALDetection(_ flag: Swift.Bool)
+  public func annotateData(isReadAline: Swift.Bool, xCoord: [Swift.Float], yCoord: [Swift.Float])
+  public func scrollController() -> AthenaSDK.ScrollController
+  @objc deinit
+}
+extension AthenaSDK.AthenaEyeControl : AthenaSDK.EyeGestureDetectorDelegate {
+  public func eyeGesture(gesture: AthenaSDK.EyeGestureType)
+}
+extension AthenaSDK.AthenaEyeControlDelegate {
+  public func eyeGesture(_ gesture: AthenaSDK.EyeGestureType)
+  public func eyeGesture(_ gesture: Swift.Int)
+}
+@objc @_hasMissingDesignatedInitializers final public class ReadingHandler : ObjectiveC.NSObject {
+  public static let ZONE_NOT_DEFINED: Swift.Int
+  public static let ZONE_UP: Swift.Int
+  public static let ZONE_5: Swift.Int
+  public static let ZONE_1: Swift.Int
+  public static let ZONE_2: Swift.Int
+  public static let ZONE_3: Swift.Int
+  public static let ZONE_4: Swift.Int
+  public static let ZONE_BOTTOM: Swift.Int
+  public static let ZONE_LEFT: Swift.Int
+  public static let ZONE_RIGHT: Swift.Int
+  public static let ZONE_SCREEN: Swift.Int
+  final public let ROW_TOP: Swift.Int
+  final public let ROW_MIDDLE: Swift.Int
+  final public let Zones: [Swift.Int]
+  final public var LINE_HEIGHT: CoreFoundation.CGFloat
+  final public let lineHeights: [CoreFoundation.CGFloat]
+  final public var currentLinesPerSecond: Swift.Double
+  final public var lineReadTimes: [Foundation.Date]
+  final public var SMOOTH_DROPOUT_PERIOD: Swift.Double
+  final public var DEFAULT_LPS: Swift.Double
+  final public var MAX_LPS: Swift.Double
+  public static let SCROLL_MULTIPLIER: Swift.Double
+  final public func setEyeBlinked(_ flag: Swift.Bool)
+  final public func changeFontSize(index: Swift.Int)
+  final public func dataRateReport(_ rate: Swift.Float)
+  final public func getLastReadingSpeed() -> Swift.Float
+  final public func onScreen(projected: CoreFoundation.CGPoint) -> Swift.Bool
+  @objc deinit
+}
+public typealias ReadALineData = (reading: Swift.Bool, location: [Swift.Float], eyeGesture: Swift.Int)
+public typealias ReaderProfile = (speed: Swift.Int, readerBox: (height: Swift.Float, width: Swift.Float))
+public enum ClassificationType {
+  case Legend
+  case DTW
+  case HMM
+  public static func == (a: AthenaSDK.ClassificationType, b: AthenaSDK.ClassificationType) -> Swift.Bool
+  public func hash(into hasher: inout Swift.Hasher)
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+@_hasMissingDesignatedInitializers public class ReadingClassification {
+  public static let LOW_DATARATE_THRESHOLD: Swift.Float
+  @objc deinit
+}
+public enum ScrollViewPosition {
+  case AtTop, Middle, AtBottom
+  public static func == (a: AthenaSDK.ScrollViewPosition, b: AthenaSDK.ScrollViewPosition) -> Swift.Bool
+  public func hash(into hasher: inout Swift.Hasher)
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+public protocol ScrollControllerDelegate {
+}
+@objc @_hasMissingDesignatedInitializers open class ScrollController : ObjectiveC.NSObject {
+  public var scrollSpeed: Swift.Double {
+    get
+    set
+  }
+  public class func shared() -> AthenaSDK.ScrollController
+  public func setScrollView(_ scrollView: UIKit.UIScrollView)
+  @objc public func scrollLine(lineHeight: CoreFoundation.CGFloat)
+  public func shouldScroll(lineHeight: CoreFoundation.CGFloat) -> Swift.Bool
+  @objc deinit
+}
+extension AthenaSDK.ScrollController : UIKit.UIScrollViewDelegate {
+  @_Concurrency.MainActor(unsafe) @objc dynamic public func scrollViewDidScroll(_ scrollView: UIKit.UIScrollView)
+}
+public func weightedAverage(array: [Swift.Float], averagePoints: Swift.Int) -> Swift.Float
+public func weightedAverage(for array: [Swift.Float], averagePoints: Swift.Int) -> [Swift.Float]
+public enum EyeGestures : Swift.Int {
+  case down
+  case up
+  case stare
+  case left
+  case right
+  public init?(rawValue: Swift.Int)
+  public typealias RawValue = Swift.Int
+  public var rawValue: Swift.Int {
+    get
+  }
+}
+@objc final public class ARKitGazeDetector : ObjectiveC.NSObject {
+  public enum Error : Swift.Error {
+    case arkitNotSupported
+    public static func == (a: AthenaSDK.ARKitGazeDetector.Error, b: AthenaSDK.ARKitGazeDetector.Error) -> Swift.Bool
+    public func hash(into hasher: inout Swift.Hasher)
+    public var hashValue: Swift.Int {
+      get
+    }
+  }
+  final public var accuracyTestMode: Swift.Bool
+  public init(sceneView: ARKit.ARSCNView)
+  final public func setCalibrationDots(dots: [UIKit.UIImageView])
+  final public func inCalibration() -> Swift.Bool
+  final public func start() throws
+  final public func pause()
+  final public func setCalibrationMode(mode: Swift.Bool)
+  final public func clearCalibration()
+  final public func setAccuracyTest(mode: Swift.Bool)
+  @objc deinit
+}
+extension AthenaSDK.ARKitGazeDetector : ARKit.ARSCNViewDelegate {
+  @objc final public func renderer(_ renderer: SceneKit.SCNSceneRenderer, updateAtTime time: Foundation.TimeInterval)
+  @objc final public func renderer(_ renderer: SceneKit.SCNSceneRenderer, didUpdate node: SceneKit.SCNNode, for anchor: ARKit.ARAnchor)
+  @objc final public func renderer(_ renderer: SceneKit.SCNSceneRenderer, didAdd node: SceneKit.SCNNode, for anchor: ARKit.ARAnchor)
+}
+extension AthenaSDK.ARKitGazeDetector : ARKit.ARSessionObserver {
+  final public func session(_ session: ARKit.ARSession, didFailWithError error: AthenaSDK.ARKitGazeDetector.Error)
+  @objc final public func sessionWasInterrupted(_ session: ARKit.ARSession)
+  @objc final public func sessionInterruptionEnded(_ session: ARKit.ARSession)
+  @objc final public func session(_ session: ARKit.ARSession, cameraDidChangeTrackingState camera: ARKit.ARCamera)
+}
+extension AthenaSDK.ARKitGazeDetector : ARKit.ARSessionDelegate {
+  @objc final public func session(_ session: ARKit.ARSession, didUpdate frame: ARKit.ARFrame)
+  @objc final public func session(_ session: ARKit.ARSession, didAdd anchors: [ARKit.ARAnchor])
+  @objc final public func session(_ session: ARKit.ARSession, didUpdate anchors: [ARKit.ARAnchor])
+  @objc final public func session(_ session: ARKit.ARSession, didRemove anchors: [ARKit.ARAnchor])
+}
+extension AthenaSDK.ARKitGazeDetector {
+  final public func calibrationFinished(_ score: [Swift.Float])
+}
+public enum EyeGestureType : Swift.Int {
+  case none, down, up, stare, left, right
+  public init?(rawValue: Swift.Int)
+  public typealias RawValue = Swift.Int
+  public var rawValue: Swift.Int {
+    get
+  }
+}
+public protocol EyeGestureDetectorDelegate {
+  func eyeGesture(gesture: AthenaSDK.EyeGestureType)
+}
+open class EyeGestureDetector {
+  public var delegate: AthenaSDK.EyeGestureDetectorDelegate?
+  public var requiredConsecStares: Swift.Int
+  public var modelFileName: Swift.String
+  public init(modelName: Swift.String?)
+  public func setRequiredStares(count: Swift.Int)
+  public func didLookAt(timestamp: Swift.Float, x: Swift.Float, y: Swift.Float, z: Swift.Float, projected: CoreFoundation.CGPoint)
+  public func setSaveData(_ flag: Swift.Bool, toSubDir: Swift.String)
+  @objc deinit
+}
+extension AthenaSDK.GAZEDATATYPE : Swift.Equatable {}
+extension AthenaSDK.GAZEDATATYPE : Swift.Hashable {}
+extension AthenaSDK.SDKVersion : Swift.Equatable {}
+extension AthenaSDK.SDKVersion : Swift.Hashable {}
+extension AthenaSDK.SDKVersion : Swift.RawRepresentable {}
+extension AthenaSDK.ClassificationType : Swift.Equatable {}
+extension AthenaSDK.ClassificationType : Swift.Hashable {}
+extension AthenaSDK.ScrollViewPosition : Swift.Equatable {}
+extension AthenaSDK.ScrollViewPosition : Swift.Hashable {}
+extension AthenaSDK.EyeGestures : Swift.Equatable {}
+extension AthenaSDK.EyeGestures : Swift.Hashable {}
+extension AthenaSDK.EyeGestures : Swift.RawRepresentable {}
+extension AthenaSDK.ARKitGazeDetector.Error : Swift.Equatable {}
+extension AthenaSDK.ARKitGazeDetector.Error : Swift.Hashable {}
+extension AthenaSDK.EyeGestureType : Swift.Equatable {}
+extension AthenaSDK.EyeGestureType : Swift.Hashable {}
+extension AthenaSDK.EyeGestureType : Swift.RawRepresentable {}

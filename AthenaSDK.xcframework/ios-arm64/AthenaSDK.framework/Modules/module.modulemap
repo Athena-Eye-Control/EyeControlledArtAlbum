@@ -1,0 +1,11 @@
+framework module AthenaSDK {
+  umbrella header "AthenaSDK.h"
+
+  export *
+  module * { export * }
+}
+
+module AthenaSDK.Swift {
+  header "AthenaSDK-Swift.h"
+  requires objc
+}

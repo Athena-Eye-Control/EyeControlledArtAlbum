@@ -1,0 +1,6 @@
+framework module AthenaML {
+  umbrella header "athenaML.h"
+
+  export *
+  module * { export * }
+}

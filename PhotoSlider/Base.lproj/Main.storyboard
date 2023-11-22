@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <device id="retina4_7" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Photo Slider View Controller-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController useStoryboardIdentifierAsRestorationIdentifier="YES" id="BYZ-38-t0r" customClass="PhotoSliderViewController" customModule="PhotoSlider" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <arscnView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="u4P-nU-88u">
+                                <rect key="frame" x="74" y="539" width="47" height="35"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </arscnView>
+                            <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vO4-TQ-4u5" customClass="PhotoSliderView" customModule="PhotoSlider" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="146" width="375" height="375"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="vO4-TQ-4u5" secondAttribute="height" multiplier="1:1" id="hS2-1E-Oe1"/>
+                                </constraints>
+                            </view>
+                            <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" fixedFrame="YES" image="looking" translatesAutoresizingMaskIntoConstraints="NO" id="jZx-7W-F64">
+                                <rect key="frame" x="171" y="317" width="32" height="32"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="vO4-TQ-4u5" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="R0U-zF-Dq2"/>
+                            <constraint firstItem="vO4-TQ-4u5" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="Wwh-lB-2cG"/>
+                            <constraint firstItem="vO4-TQ-4u5" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="bUo-JF-p2m"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="gestureActivationView" destination="jZx-7W-F64" id="8vd-uT-uPR"/>
+                        <outlet property="photoSliderView" destination="vO4-TQ-4u5" id="hVy-LH-nFf"/>
+                        <outlet property="sceneView" destination="u4P-nU-88u" id="Y0d-dD-Mpm"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="45.600000000000001" y="-0.44977511244377816"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="looking" width="256" height="256"/>
+    </resources>
+</document>
