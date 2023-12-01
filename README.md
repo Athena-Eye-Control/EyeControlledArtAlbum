@@ -1,49 +1,61 @@
-# Eye Controlled Art Album Slider
+# Athena Photo Slider
 
-Slide through art pictures using just your eyes. Powered by [Athena SDK](https://athenasaas.io/).
+Slide through pictures using just your eyes. Powered by [Athena SDK](https://athenasaas.io/).
 
-![reader gif](https://github.com/YanyuChen98/AthenaPhotoSlider-test/img/slider-gif.gif)
+<img src="https://i.postimg.cc/768YHhTM/slider-gif-small.gif">
 
 The Athena Photo Slider is a demo app for a brand new photo viewing experience. The app makes use of the powerful [Athena SDK](https://athenasaas.io/) for touchless navigation.
 
-With the [Athena SDK](https://athenasaas.io/), one can easily develop his own apps with eye control functionalities. Whether you're browsing a gallery or presenting a slideshow, move through your photos seamlessly using just your eyes.
+With the [Athena SDK](https://athenasaas.io/), people can easily develop their own apps with eye control functionalities. Whether they're browsing a gallery or presenting a slideshow, move through the photos seamlessly using just the eyes.
+
+
 
 ## Features
 
 * **Eye-Controlled Navigation**: Slide between pictures using just your eye gaze, offering a hands-free viewing experience.
-* **Seamless Integration with Athena SDK**: Powered by [Athena SDK](https://athenasaas.io/), a simple and straightforward SDK that helps you building other apps with the same eye control features.
-* **Privacy and Security**: No data is stored, uploaded, or shared. No signup or login required and you can still use it while internet is off.
+* **Seamless Integration with Athena SDK**: Powered by [Athena SDK](https://athenasaas.io/), a simple and straightforward SDK that helps you build other apps with the same eye control features.
+* **Privacy and Security**: No data is stored, uploaded, or shared. No signup or login required and you can still use it while the internet is off.
+
+
 
 ## Requirements
 
 This app works with [Xcode 14.3.0](https://developer.apple.com/download/all/?q=xcode), Swift 5.8 and supports iOS 14 and above.
 
-You will have a smoother building experience if [Brew](https://brew.sh) is installed on your MacOS.
+
 
 ## Build Instructions
 
 1. Install the latest [Xcode developer tools](https://developer.apple.com/xcode/downloads/) from Apple.
-2. Install [Brew](https://brew.sh) from the official site.
-3. Clone the repository:
+
+2. Clone the repository:
 
    ```shell
-   git clone [athena photo slider]
+   git clone https://github.com/Athena-Eye-Control/AthenaPhotoSlider.git
    ```
-4. Open 'AthenaJoyStickDemo.xcodeproj' in the root folder with Xcode.
-5. Make sure you use your own team and bundle identifier under the `Signing & Capabilities` tab here:
 
-   <img src="https://athenasaas.io/images/getting-started-1.png">
-6. Select the [destination](https://developer.apple.com/documentation/xcode/build-system?changes=_2) device you want to build on.
-7. Turn on `Developer Mode` on your device in `Privacy & Security` settings if asked.
-8. Start the app with `Cmd + R` or by pressing the `build and run` button.
-9. Navigate to `Settings > General > Device Management` to trust this application if asked.
+3. Open 'PhotoSlider.xcodeproj' in the root folder with Xcode.
+
+4. Make sure you use your own team and bundle identifier under the `Signing & Capabilities` tab here:
+
+   <img src="https://i.postimg.cc/jdBwJgzX/signing.jpg">
+
+5. Select the [destination](https://developer.apple.com/documentation/xcode/build-system?changes=_2) device you want to build on.
+
+6. Turn on `Developer Mode` on your device in `Privacy & Security` settings if asked.
+
+7. Start the app with `Cmd + R` or by pressing the `build and run` button.
+
+8. Navigate to `Settings > General > Device Management` to trust this application if asked.
+
+
 
 ## How to Use
 
 1. Launch the app.
-2. Staring at the center of the picture until an eye emoji like this pops up:
+2. Stare at the center of the picture till an eye icon (looks like: 👀) appears on the screen:
    <img src="https://athenasaas.io/images/photoslider-1.PNG">
-3. While the emoji is in the screen, look at the right or left edge of the picture. It will slide accordingly without touching the screen.
+3. When the eye icon is shown on the screen, make a swipe gesture with your eyes by looking to the right or left edge of the screen. The picture displayed will slide left or right accordingly.
 4. Repeat the 2nd and 3rd steps if you want to browse more.
 
 
@@ -52,13 +64,13 @@ You will have a smoother building experience if [Brew](https://brew.sh) is insta
 
 AthenaSDK unlocks a powerful new tool for developers to build more accessible, immersive, and engaging user experiences. 
 
-With AthenaSDK, you can easily develop new apps with contactless browsing experience, or integrate this new experience into your existing app.
+With AthenaSDK, you can easily develop new apps with a touchless browsing experience, or integrate this new experience into your existing app.
 
 ### How to add the SDK in your existing project
 
-1. Download and unzip the SDK from GitHub or our [official website](https://athenasaas.io/download) in the previous folder of your project.
+1. Download and unzip the SDK from GitHub or our [official website](https://athenasaas.io/download)  root folder of your project.
 2. Add 'AthenaML.framework' and 'AthenaSDK.xcframework' from the file you downloaded into `Frameworks, Libraries, and Embedded Content` under the `General` tab.
-3. Under the `Build Settings` tab, click the `All` subtab, and find the `Search Paths` options, add `../` to the `Framework Search Paths` because the frameworks are in the previous folder of this project.
+3. Under the `Build Settings` tab, click the `All` subtab, and find the `Search Paths` options, add `./` to the `Framework Search Paths` because the frameworks are in the root folder of this project.
 4. Initialize the SDK following the instructions in the next section.
 
 ### Initialization of the SDK
@@ -175,7 +187,7 @@ extension ViewController: AthenaEyeControlDelegate {
     }
 
     // Provides a report on the data rate.
-    // Useful for gauging performance or troubleshooting.
+    // Useful for gauge performance or troubleshooting.
     func dataRateReport(_ rate: Float) {
         print("data rate: \(rate)")
     }
@@ -194,7 +206,7 @@ extension ViewController: AthenaEyeControlDelegate {
                 print(1)
             } else if(gesture == 2){ //look up
                 print(2)
-            } else if(gesture == 3){ // staring
+            } else if(gesture == 3){ // stare
                 print(3)
             } else if(gesture == 4){ // look left
                 print(4)
@@ -229,6 +241,8 @@ Whether you have a question about this app, the Athena SDK, or just want to prov
 
 [Twitter](https://twitter.com/Athenahandsfree)
 
-## Liscense
 
-[Athena Photo Slider ](https://github.com/Athena-Eye-Control/AthenaSDK/tree/main/Samples/PhotoSlider)© 2023 by [Athena Accessible Technology Inc. ](https://athenahci.com/)is licensed under [CC BY-NC-ND 4.0 ![img](https://chooser-beta.creativecommons.org/img/cc-logo.f0ab4ebe.svg)![img](https://chooser-beta.creativecommons.org/img/cc-by.21b728bb.svg)](http://creativecommons.org/licenses/by-nc-nd/4.0/?ref=chooser-v1)
+
+## License
+
+[Athena Photo Slider ](https://github.com/Athena-Eye-Control/AthenaPhotoSlider)© 2023 by [Athena Accessible Technology Inc. ](https://athenasaas.io/)is licensed under [CC BY-NC 4.0 ![img](https://chooser-beta.creativecommons.org/img/cc-logo.f0ab4ebe.svg)![img](https://chooser-beta.creativecommons.org/img/cc-by.21b728bb.svg)](http://creativecommons.org/licenses/by-nc/4.0/?ref=chooser-v1)
